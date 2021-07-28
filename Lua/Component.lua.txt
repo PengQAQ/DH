@@ -1,0 +1,22 @@
+Component = {}
+
+function test:new(obj)
+	-- body
+	local tempObj = {}
+	setmetatable(tempObj,self)
+	self.__index = self
+	return tempObj
+end
+
+function test:Awake(gameObject)
+	-- body
+	print("Awake")
+end
+
+function test:Start(gameObject)
+	-- body
+	print("Start")
+end
+
+	local go = UnityEngine.GameObject("go")
+	local cmp = LuaComponent.Add(go,Component)

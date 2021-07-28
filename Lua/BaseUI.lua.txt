@@ -1,0 +1,37 @@
+
+local UnityEngine=CS.UnityEngine
+
+BaseUI = {}
+
+BaseUI.__index = BaseUI
+
+function BaseUI:new()
+	local tempObj = {}
+	setmetatable(tempObj, BaseUI)
+	print("new")
+	return tempObj
+end
+
+xlua.hotfix(CS.BaseUI,"OnOpen",function(self)
+	local canvasGroup = self:GetComponent("CanvasGroup")
+	canvasGroup.alpha = 1
+	canvasGroup.blocksRaycasts = true
+	print("open")
+end)
+
+function BaseUI:OnClose()
+	-- body
+	local canvasGroup = self:GetComponent("CanvasGroup")
+	canvasGroup.alpha = 0;
+    canvasGroup.blocksRaycasts = false;
+    print("close")
+end
+
+function BaseUI:OnResume()
+	-- body
+	local canvasGroup = self:GetComponent("CanvasGroup")
+	canvasGroup.alpha = 0;
+    canvasGroup.blocksRaycasts = false;
+end
+
+local Main = BaseUI:new()
